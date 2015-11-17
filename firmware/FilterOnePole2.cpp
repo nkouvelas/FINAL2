@@ -52,19 +52,19 @@ void FilterOnePole2::setTau( float newTau ) {
 float FilterOnePole2::output() {
     // figure out which button to read
   switch (FT) {
-    case LOWPASS:         
+    case LOWPASS2:         
       // return the last value
       return Y; 
       break;
-    case INTEGRATOR:      
+    case INTEGRATOR2:      
       // using a lowpass, but normaize
       return Y * (TauUS/1.0e6);
       break;
-    case HIGHPASS:       
+    case HIGHPASS2:       
       // highpass is the _difference_
       return X-Y;
       break;
-    case DIFFERENTIATOR:
+    case DIFFERENTIATOR2:
       // like a highpass, but normalize
       return (X-Y)/(TauUS/1.0e6);
       break;
@@ -92,8 +92,8 @@ void FilterOnePole2::test() {
   float nextupdateTime = millis()*1e-3;
 
   float inputValue = 0;
-  FilterOnePole2 hp( HIGHPASS, tau, inputValue );
-  FilterOnePole2 lp( LOWPASS, tau, inputValue );
+  FilterOnePole2 hp( HIGHPASS2, tau, inputValue );
+  FilterOnePole2 lp( LOWPASS2, tau, inputValue );
 
   while( true ) {
     float now = millis()*1e-3;
