@@ -1,11 +1,11 @@
 #include "FilterOnePole2.h"
 #include "FloatDefine.h"
 
-FilterOnePole2::FilterOnePole2( FILTER_TYPE ft, float fc, float initialValue ) {
+FilterOnePole2::FilterOnePole2( FILTER_TYPE2 ft, float fc, float initialValue ) {
   setFilter( ft, fc, initialValue );
 }
 
-void FilterOnePole2::setFilter( FILTER_TYPE ft, float fc, float initialValue ) {
+void FilterOnePole2::setFilter( FILTER_TYPE2 ft, float fc, float initialValue ) {
   FT = ft;
   setFrequency( fc );
 
