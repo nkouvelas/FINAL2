@@ -1,5 +1,5 @@
-#ifndef FilterOnePole_h
-#define FilterOnePole_h
+#ifndef FilterOnePole2_h
+#define FilterOnePole2_h
 
 #include "application.h"
 #include <math.h>
@@ -16,7 +16,7 @@ enum FILTER_TYPE {
 // note that this must be updated in a loop, using the most recent acquired values and the time acquired
 //   Y = a0*X + a1*Xm1
 //              + b1*Ylast
-struct FilterOnePole {
+struct FilterOnePole2 {
   FILTER_TYPE FT;
   float TauUS;       // decay constant of the filter, in US
   float TauSamps;    // tau, measued in samples (this changes, depending on how long between input()s
@@ -33,7 +33,7 @@ struct FilterOnePole {
   float ElapsedUS;   // time since last update
   long LastUS;       // last time measured
 
-  FilterOnePole( FILTER_TYPE ft=LOWPASS, float fc=1.0, float initialValue=0 );
+  FilterOnePole2( FILTER_TYPE ft=LOWPASS, float fc=1.0, float initialValue=0 );
   
   // sets or resets the parameters and state of the filter
   void setFilter( FILTER_TYPE ft, float tauS, float initialValue );
@@ -54,12 +54,12 @@ struct FilterOnePole {
 };
 
 // two pole filter, these are very useful
-struct FilterOnePoleCascade {
+struct FilterOnePoleCascade2 {
 
-  FilterOnePole Pole1;
-  FilterOnePole Pole2;
+  FilterOnePole2 Pole1;
+  FilterOnePole2 Pole2;
   
-  FilterOnePoleCascade( float riseTime=1.0, float initialValue=0 );  // rise time to step function, 10% to 90%
+  FilterOnePoleCascade2( float riseTime=1.0, float initialValue=0 );  // rise time to step function, 10% to 90%
   
   // rise time is 10% to 90%, for a step input
   void setRiseTime( float riseTime );
