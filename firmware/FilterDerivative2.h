@@ -1,10 +1,10 @@
-#ifndef FilterDerivative_h
-#define FilterDerivative_h
+#ifndef FilterDerivative2_h
+#define FilterDerivative2_h
 #include <math.h>
 #define TWO_PI  6.28
 #define PI 3.14
 // returns the derivative
-struct FilterDerivative {
+struct FilterDerivative2 {
   long LastUS;
   float LastInput;
   
@@ -15,6 +15,6 @@ struct FilterDerivative {
   float output();
 };
 
-void testFilterDerivative();
+void testFilterDerivative2();
 
 #endif
