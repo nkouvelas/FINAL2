@@ -1,7 +1,7 @@
-#include "FilterDerivative.h"
+#include "FilterDerivative2.h"
 #include "application.h"
 
-float FilterDerivative::input( float inVal ) {
+float FilterDerivative2::input( float inVal ) {
   long thisUS = micros();
   float dt = 1e-6*float(thisUS - LastUS);   // cast to float here, for math
   LastUS = thisUS;                          // update this now
@@ -12,10 +12,10 @@ float FilterDerivative::input( float inVal ) {
   return output();
 }
   
-float FilterDerivative::output() { return Derivative; }
+float FilterDerivative2::output() { return Derivative; }
   
-void testFilterDerivative() {
-  FilterDerivative der;
+void testFilterDerivative2() {
+  FilterDerivative2 der;
   
   while(true) {
     float t = 1e-6 * float( micros() );
