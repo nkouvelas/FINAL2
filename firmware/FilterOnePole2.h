@@ -5,7 +5,7 @@
 #include <math.h>
 #define TWO_PI  6.28
 #define PI 3.14
-enum FILTER_TYPE {
+enum FILTER_TYPE2 {
   HIGHPASS,
   LOWPASS,
   INTEGRATOR,
@@ -17,7 +17,7 @@ enum FILTER_TYPE {
 //   Y = a0*X + a1*Xm1
 //              + b1*Ylast
 struct FilterOnePole2 {
-  FILTER_TYPE FT;
+  FILTER_TYPE2 FT;
   float TauUS;       // decay constant of the filter, in US
   float TauSamps;    // tau, measued in samples (this changes, depending on how long between input()s
 
@@ -33,10 +33,10 @@ struct FilterOnePole2 {
   float ElapsedUS;   // time since last update
   long LastUS;       // last time measured
 
-  FilterOnePole2( FILTER_TYPE ft=LOWPASS, float fc=1.0, float initialValue=0 );
+  FilterOnePole2( FILTER_TYPE2 ft=LOWPASS, float fc=1.0, float initialValue=0 );
   
   // sets or resets the parameters and state of the filter
-  void setFilter( FILTER_TYPE ft, float tauS, float initialValue );
+  void setFilter( FILTER_TYPE2 ft, float tauS, float initialValue );
 
   void setFrequency( float newFrequency );
   
