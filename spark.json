@@ -1,0 +1,7 @@
+{
+  "name": "FilterOnePole2",
+  "author": "Nikos Kouvelas <nko@eworx.gr>",
+  "license": "MIT",
+  "version": "0.0.1",
+  "description": "FFT library"
+}
