@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef Filters_h
-#define Filters_h
+#ifndef Filters2_h
+#define Filters2_h
 
 #include "FilterOnePole2.h"
 //#include "FilterTwoPole2.h"
