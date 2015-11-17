@@ -1,11 +1,11 @@
-#include "FilterOnePole.h"
+#include "FilterOnePole2.h"
 #include "FloatDefine.h"
 
-FilterOnePole::FilterOnePole( FILTER_TYPE ft, float fc, float initialValue ) {
+FilterOnePole2::FilterOnePole2( FILTER_TYPE ft, float fc, float initialValue ) {
   setFilter( ft, fc, initialValue );
 }
 
-void FilterOnePole::setFilter( FILTER_TYPE ft, float fc, float initialValue ) {
+void FilterOnePole2::setFilter( FILTER_TYPE ft, float fc, float initialValue ) {
   FT = ft;
   setFrequency( fc );
 
@@ -16,7 +16,7 @@ void FilterOnePole::setFilter( FILTER_TYPE ft, float fc, float initialValue ) {
   LastUS = micros();
 }
 
-float FilterOnePole::input( float inVal ) {
+float FilterOnePole2::input( float inVal ) {
   long time = micros();
   ElapsedUS = float(time - LastUS);   // cast to float here, for math
   LastUS = time;                      // update this now
@@ -41,15 +41,15 @@ float FilterOnePole::input( float inVal ) {
   return output();
 }
 
-void FilterOnePole::setFrequency( float newFrequency ) {
+void FilterOnePole2::setFrequency( float newFrequency ) {
   setTau( 1.0/(TWO_PI*newFrequency ) ); // τ=1/ω
 }
 
-void FilterOnePole::setTau( float newTau ) {
+void FilterOnePole2::setTau( float newTau ) {
   TauUS = newTau * 1e6;
 }
 
-float FilterOnePole::output() {
+float FilterOnePole2::output() {
     // figure out which button to read
   switch (FT) {
     case LOWPASS:         
@@ -74,7 +74,7 @@ float FilterOnePole::output() {
   }
 }
 
-void FilterOnePole::print() {
+void FilterOnePole2::print() {
   Serial.println("");
   Serial.print(" Y: ");        Serial.print( Y );
   Serial.print(" Ylast: ");      Serial.print( Ylast );
@@ -86,14 +86,14 @@ void FilterOnePole::print() {
   Serial.println("");
 }
 
-void FilterOnePole::test() {
+void FilterOnePole2::test() {
   float tau = 10;
   float updateInterval = 1;
   float nextupdateTime = millis()*1e-3;
 
   float inputValue = 0;
-  FilterOnePole hp( HIGHPASS, tau, inputValue );
-  FilterOnePole lp( LOWPASS, tau, inputValue );
+  FilterOnePole2 hp( HIGHPASS, tau, inputValue );
+  FilterOnePole2 lp( LOWPASS, tau, inputValue );
 
   while( true ) {
     float now = millis()*1e-3;
@@ -118,45 +118,45 @@ void FilterOnePole::test() {
   }
 }
 
-void FilterOnePole::setToNewValue( float newVal ) {
+void FilterOnePole2::setToNewValue( float newVal ) {
   Y = Ylast = X = newVal;
 }
 
 
 // stuff for filter2 (lowpass only)
 // should be able to set a separate fall time as well
-FilterOnePoleCascade::FilterOnePoleCascade( float riseTime, float initialValue ) {
+FilterOnePoleCascade2::FilterOnePoleCascade2( float riseTime, float initialValue ) {
   setRiseTime( riseTime );
   setToNewValue( initialValue );
 }
 
-void FilterOnePoleCascade::setRiseTime( float riseTime ) {
+void FilterOnePoleCascade2::setRiseTime( float riseTime ) {
   float tauScale = 3.36;      // found emperically, by running test();
 
   Pole1.setTau( riseTime / tauScale );
   Pole2.setTau( riseTime / tauScale );
 }
 
-float FilterOnePoleCascade::input( float inVal  ) {
+float FilterOnePoleCascade2::input( float inVal  ) {
   Pole2.input( Pole1.input( inVal ));
   return output();
 }
 
 // clears out the values in the filter
-void FilterOnePoleCascade::setToNewValue( float newVal ) {
+void FilterOnePoleCascade2::setToNewValue( float newVal ) {
   Pole1.setToNewValue( newVal );
   Pole2.setToNewValue( newVal );
 }
 
-float FilterOnePoleCascade::output() {
+float FilterOnePoleCascade2::output() {
   return Pole2.output();
 }
 
-void FilterOnePoleCascade::test() {
+void FilterOnePoleCascade2::test() {
   // make a filter, how fast does it run:
   
   float rise = 1.0;
-  FilterOnePoleCascade myFilter( rise );
+  FilterOnePoleCascade2 myFilter( rise );
   
   // first, test the filter speed ...
   long nLoops = 1000;
