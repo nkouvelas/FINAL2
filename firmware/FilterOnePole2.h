@@ -6,10 +6,10 @@
 #define TWO_PI  6.28
 #define PI 3.14
 enum FILTER_TYPE2 {
-  HIGHPASS,
-  LOWPASS,
-  INTEGRATOR,
-  DIFFERENTIATOR
+  HIGHPASS2,
+  LOWPASS2,
+  INTEGRATOR2,
+  DIFFERENTIATOR2
 };
 
 // the recursive filter class implements a recursive filter (low / pass / highpass
@@ -33,7 +33,7 @@ struct FilterOnePole2 {
   float ElapsedUS;   // time since last update
   long LastUS;       // last time measured
 
-  FilterOnePole2( FILTER_TYPE2 ft=LOWPASS, float fc=1.0, float initialValue=0 );
+  FilterOnePole2( FILTER_TYPE2 ft=LOWPASS2, float fc=1.0, float initialValue=0 );
   
   // sets or resets the parameters and state of the filter
   void setFilter( FILTER_TYPE2 ft, float tauS, float initialValue );
