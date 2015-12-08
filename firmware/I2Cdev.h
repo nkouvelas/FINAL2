@@ -74,7 +74,7 @@ THE SOFTWARE.
     //    #include "Arduino.h"
   //  #endif
   //  #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
-        #include <Wire.h>
+        #include "Wire.h"
   //  #endif
 //#else
   //  #include "ArduinoWrapper.h"
