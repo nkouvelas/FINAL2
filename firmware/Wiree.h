@@ -21,7 +21,7 @@
 
 #ifndef TwoWire_h
 #define TwoWire_h
-
+#include "application.h"
 #include <inttypes.h>
 #include "Stream.h"
 
