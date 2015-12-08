@@ -1,7 +1,7 @@
 {
-  "name": "Wiree",
+  "name": "Wire",
   "author": "Nikos Kouvelas <nko@eworx.gr>",
   "license": "MIT",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "FFT library"
 }
